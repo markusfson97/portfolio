@@ -598,6 +598,8 @@ const VIDEOS = [
   {id:"MoJX4Kjrjs0", t:"När föräldrar säger gå ut och lek..", views:"600k+ views", note:"", roles:"Cinematographer, Editor, co-idea developer, Requisitioner and attributer", poster:"a_dsc07533"},
   {id:"GYmlskunkAk", t:"Rezdar", views:"400k+ views", note:"Noticed by Swedish news", roles:"Cinematographer, Editor, co-idea developer", poster:"a_dsc00382"},
   {id:"oeJV9fTi0u4", t:"Jag överlever med indianer i världens största djungel", views:"400k+ views", note:"", roles:"Cinematographer, Photographer, Requisitioner and attributer", poster:"dsc09559"},
+  {id:"xI1XDnERw7o", t:"The Ocean Race Stockholm", views:"", note:"", roles:"Cinematographer, Producer, Editor", poster:""},
+  {id:"Hb4D4ONVK4k", t:"Bröllop Sara & Patrick", views:"", note:"", roles:"Cinematographer, Editor", poster:"", noEmbed:true},
 ];
 const FEATURED = [
   {t:"Dirt jumps", s:"Action sports", img:"a_dsc00382", pal:"gold", kind:"action"},
@@ -656,12 +658,12 @@ const vbox = document.getElementById("videos");
 VIDEOS.forEach(v=>{
   const a = document.createElement("a"); a.className = "vcard"; a.href = "https://www.youtube.com/watch?v=" + v.id; a.target = "_blank"; a.rel = "noopener";
   const fallback = IMG_T[v.poster] || "";
-  a.innerHTML = `<span class="vthumb"><img alt="" loading="lazy"><span class="vplay" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7Z" fill="currentColor"/></svg></span><span class="vviews">${v.views}</span></span>
+  a.innerHTML = `<span class="vthumb"><img alt="" loading="lazy"><span class="vplay" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7Z" fill="currentColor"/></svg></span>${v.views ? `<span class="vviews">${v.views}</span>` : ""}</span>
     <span class="vbody"><strong>${v.t}</strong>${v.note ? `<em>${v.note}</em>` : ""}<small><b>Production:</b> ${v.roles}</small></span>`;
   const im = a.querySelector("img");
   im.onerror = ()=>{ im.onerror = null; im.src = fallback; };
   im.src = "https://i.ytimg.com/vi/" + v.id + "/hqdefault.jpg";
-  if(CAN_EMBED) a.addEventListener("click", e=>{ e.preventDefault(); openVideo(v); });
+  if(CAN_EMBED && !v.noEmbed) a.addEventListener("click", e=>{ e.preventDefault(); openVideo(v); });
   vbox.appendChild(a);
 });
 function openVideo(v){
