@@ -18,10 +18,11 @@ Kör `pip install pillow` en gång, sedan `python3 update.py`. Den läser:
 Raderade bilder försvinner, nya läggs till. Håll `index.html` under ~16 MB.
 
 ## Innehåll på sidan
-- Topp: "Portfolio" (orange, Poppins) + Markus egen text + showreel (YouTube `_z1ZGzL__C8`).
+- Topp: logga "Ligatur" (MF, inline SVG i h1) + Markus egen text + showreel (YouTube `_z1ZGzL__C8`).
 - Om mig: bild till vänster, "Hey, I'm Markus!"-text till höger, sen rutor: 10,000+ photos delivered, 100+ film projects, Worldwide, Clients (bubbla med 8 kundlogos), Drone certified (bubbla: FPV/cinematic, EASA-approved, all-day aerial filming, national coverage, serious about safety).
 - Flikar: All, Action sports, Videos, Portraits. Videos = 6 YouTube-kort (lista `VIDEOS` i template.html, med visningar och roller). Titeln på `GYmlskunkAk` är okänd ("Rezdar" som platshållare).
 - Kontakt: "Let's work together" + mejl.
+- Färger: marin `#040322`, blå `#0297DE`, orange `#FC734D`, med blå/orange glöd och korn (affischkänsla).
 - Mörkt läge som standard, ljust via knappen. Mobilanpassad (sticky filterrad, 2 kolumner).
 
 ## YouTube

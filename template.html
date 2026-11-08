@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0C0C0D">
+<meta name="theme-color" content="#040322">
 <title>Markus Fredriksson Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,24 +11,32 @@
 <style>
 /* Layout: jättelikt orange "Portfolio" + namn i skrivstil, karusell med utvalda bilder, om-kort med siffror, filtrerbart bildrutnät. */
 :root{
-  --bg:#0C0C0D;
-  --surface:#18181A;
-  --ink:#F3F1EE;
-  --muted:#9A9894;
-  --line:#2A2A2D;
-  --accent:#F26A1B;
+  --bg:#040322;
+  --surface:#0E0F42;
+  --ink:#F7F9FE;
+  --muted:#AAB8D8;
+  --line:rgba(120,160,235,.2);
+  --accent:#FC734D;
+  --blue:#0297DE;
+  --on-accent:#040322;
+  --glass:rgba(255,255,255,.045);
+  --g1:.62; --g2:.42; --g3:.26; --grain:.07;
   --display:"Poppins", "Helvetica Neue", Arial, sans-serif;
   --script:"Lora", Georgia, serif;
   --gutter:clamp(16px, 5vw, 72px);
   color-scheme:dark;
 }
 :root[data-theme="light"]{
-  --bg:#FAFAF9;
-  --surface:#F0EFED;
-  --ink:#141414;
-  --muted:#6F6D69;
-  --line:#E2E0DC;
-  --accent:#EE6416;
+  --bg:#F5F9FD;
+  --surface:#FFFFFF;
+  --ink:#040322;
+  --muted:#4C5780;
+  --line:rgba(4,3,34,.12);
+  --accent:#E8562C;
+  --blue:#0274AD;
+  --on-accent:#040322;
+  --glass:rgba(255,255,255,.6);
+  --g1:.3; --g2:.2; --g3:.14; --grain:.035;
   color-scheme:light;
 }
 *{box-sizing:border-box}
@@ -39,7 +47,7 @@ body{
   -webkit-font-smoothing:antialiased; transition:background .3s ease, color .3s ease;
 }
 a{color:inherit}
-:focus-visible{outline:2px solid var(--accent); outline-offset:3px}
+:focus-visible{outline:2px solid var(--blue); outline-offset:3px}
 canvas{display:block; max-width:100%}
 .wrap{max-width:1240px; margin:0 auto; padding:0 var(--gutter)}
 
@@ -49,7 +57,7 @@ canvas{display:block; max-width:100%}
 .brand .mono{border:1.5px solid var(--ink); padding:2px 7px; font-size:12px}
 .nav{display:flex; align-items:center; gap:28px; font-size:13px}
 .nav a{text-decoration:none; color:var(--muted)}
-.nav a:hover{color:var(--ink)}
+.nav a:hover{color:var(--blue)}
 .toggle{
   position:relative; width:42px; height:22px; border-radius:999px; border:0; cursor:pointer;
   background:var(--accent); padding:0;
@@ -68,7 +76,7 @@ canvas{display:block; max-width:100%}
 .intro{display:flex; flex-direction:column; gap:28px}
 .big{position:relative; display:flex; align-items:flex-start; gap:12px; width:max-content}
 .big h1{
-  margin:0; font-family:var(--display); font-weight:600; color:var(--accent);
+  margin:0; font-family:var(--display); font-weight:600; color:var(--ink);
   font-size:clamp(60px,8vw,112px); line-height:.84; letter-spacing:-.045em;
 }
 .big h1 span{display:block}
@@ -77,7 +85,6 @@ canvas{display:block; max-width:100%}
   writing-mode:vertical-rl; transform:rotate(180deg); font-size:10px; letter-spacing:.2em;
   color:var(--muted); align-self:flex-end; margin-bottom:.3em;
 }
-.spark{position:absolute; color:var(--accent); width:clamp(20px,2.6vw,34px); top:-6px; right:-22px}
 .hero-text .script{
   font-family:var(--script); font-style:italic; font-weight:600;
   font-size:clamp(36px,4.2vw,54px); line-height:1; margin:0 0 12px; color:var(--ink);
@@ -92,7 +99,7 @@ canvas{display:block; max-width:100%}
 .reel:hover img{transform:scale(1.03)}
 .reel-play{
   position:absolute; z-index:2; left:50%; top:50%; transform:translate(-50%,-50%);
-  width:76px; height:76px; border-radius:50%; background:var(--accent); display:grid; place-items:center;
+  width:76px; height:76px; border-radius:50%; background:var(--accent); color:var(--on-accent); display:grid; place-items:center;
   box-shadow:0 10px 30px rgba(0,0,0,.35); transition:transform .25s ease;
 }
 .reel:hover .reel-play{transform:translate(-50%,-50%) scale(1.08)}
@@ -106,12 +113,12 @@ canvas{display:block; max-width:100%}
 .vthumb{position:relative; aspect-ratio:16/9; overflow:hidden; background:#000}
 .vthumb img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .5s ease}
 .vcard:hover .vthumb img{transform:scale(1.04)}
-.vplay{position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:56px; height:56px; border-radius:50%; background:var(--accent); color:#fff; display:grid; place-items:center; box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.vplay{position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:56px; height:56px; border-radius:50%; background:var(--accent); color:var(--on-accent); display:grid; place-items:center; box-shadow:0 8px 24px rgba(0,0,0,.35)}
 .vplay svg{width:22px; height:22px; margin-left:3px}
 .vviews{position:absolute; left:12px; bottom:12px; background:rgba(0,0,0,.65); color:#fff; font-size:12px; font-weight:500; padding:4px 10px; border-radius:999px}
 .vbody{display:flex; flex-direction:column; gap:6px; padding:16px 18px 20px}
 .vbody strong{font-weight:600; font-size:17px; line-height:1.3}
-.vbody em{font-style:normal; color:var(--accent); font-size:13px; font-weight:500}
+.vbody em{font-style:normal; color:var(--blue); font-size:13px; font-weight:500}
 .vbody small{color:var(--muted); font-size:13px; line-height:1.5}
 .vbody small b{color:var(--ink); font-weight:500}
 .lb-video{width:min(100%, calc((100vh - 140px) * 16 / 9)); aspect-ratio:16/9; border:0; border-radius:8px; background:#000}
@@ -156,7 +163,7 @@ canvas{display:block; max-width:100%}
   background:rgba(0,0,0,.45); color:#fff; cursor:pointer; display:grid; place-items:center;
   backdrop-filter:blur(6px);
 }
-.arrow:hover{background:var(--accent); border-color:var(--accent)}
+.arrow:hover{background:var(--blue); border-color:var(--blue)}
 .arrow.prev{left:clamp(8px,4vw,60px)} .arrow.next{right:clamp(8px,4vw,60px)}
 .arrow svg{width:16px; height:16px}
 
@@ -169,9 +176,9 @@ canvas{display:block; max-width:100%}
 .profile img{display:block; width:100%; height:auto; aspect-ratio:4/5; object-fit:cover; object-position:50% 85%}
 .who{margin-bottom:24px}
 .who h2{margin:0 0 4px; font-weight:600; font-size:clamp(28px,3.2vw,40px); letter-spacing:-.02em; line-height:1.1}
-.who span{display:block; color:var(--accent); font-size:14px; font-weight:500; margin-bottom:14px}
+.who span{display:block; color:var(--blue); font-size:14px; font-weight:500; margin-bottom:14px}
 .who p{margin:0 0 10px; color:var(--muted); max-width:56ch}
-.about .kicker{color:var(--accent); font-size:12px; font-weight:500; margin:0 0 6px}
+.about .kicker{color:var(--blue); font-size:12px; font-weight:500; margin:0 0 6px}
 .about h2{
   margin:0 0 16px; font-weight:600; font-size:clamp(28px,3.4vw,42px); line-height:1.12; letter-spacing:-.02em;
   text-wrap:balance;
@@ -181,7 +188,7 @@ canvas{display:block; max-width:100%}
 .stats{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px}
 .stat{min-height:96px}
 .stat{background:var(--surface); border-radius:12px; padding:16px 18px; display:grid; grid-template-columns:auto 1fr; gap:2px 14px; align-items:center}
-.stat svg{grid-row:span 2; width:20px; height:20px; color:var(--accent)}
+.stat svg{grid-row:span 2; width:20px; height:20px; color:var(--blue)}
 .stat b{font-weight:600; font-size:24px; line-height:1.1; font-variant-numeric:tabular-nums}
 .stat span{font-size:12px; color:var(--muted)}
 
@@ -191,8 +198,8 @@ canvas{display:block; max-width:100%}
   font:inherit; font-size:12.5px; font-weight:500; color:var(--muted); cursor:pointer;
   background:var(--surface); border:0; border-radius:999px; padding:7px 18px;
 }
-.filters button:hover{color:var(--ink)}
-.filters button[aria-pressed="true"]{background:var(--accent); color:#fff}
+.filters button:hover{color:var(--blue)}
+.filters button[aria-pressed="true"]{background:var(--accent); color:var(--on-accent)}
 .grid{columns:3 280px; column-gap:14px}
 .tile{
   break-inside:avoid; margin:0 0 14px; display:block; width:100%; border:0; padding:0; cursor:pointer;
@@ -214,15 +221,15 @@ canvas{display:block; max-width:100%}
 .pop.drone-pop::after{left:40px; right:auto}
 .checks{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px}
 .checks li{display:flex; align-items:center; gap:10px; padding:14px 14px; border-radius:12px; background:color-mix(in srgb, var(--bg) 6%, transparent); font-size:14px; line-height:1.3}
-.checks li::before{content:""; flex:0 0 18px; height:18px; border-radius:50%; background:var(--accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='m4 8.5 2.5 2.5L12 5.5' fill='none' stroke='white' stroke-width='2'/%3E%3C/svg%3E") center/12px no-repeat}
+.checks li::before{content:""; flex:0 0 18px; height:18px; border-radius:50%; background:var(--accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='m4 8.5 2.5 2.5L12 5.5' fill='none' stroke='%23040322' stroke-width='2'/%3E%3C/svg%3E") center/12px no-repeat}
 .checks strong{font-weight:500}
 .clients-wrap{position:relative}
 button.stat{font:inherit; color:inherit; text-align:left; border:1px solid transparent; cursor:pointer; width:100%; height:100%}
-button.stat:hover,button.stat[aria-expanded="true"]{border-color:var(--accent)}
+button.stat:hover,button.stat[aria-expanded="true"]{border-color:var(--blue)}
 button.stat.clients{position:relative; padding-right:64px}
 button.stat.clients::after{
   content:""; position:absolute; right:18px; top:50%; width:32px; height:32px; margin-top:-16px; border-radius:50%;
-  background:var(--accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 10l4-4 4 4' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat;
+  background:var(--accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 10l4-4 4 4' fill='none' stroke='%23040322' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat;
   transition:transform .25s ease;
 }
 button.stat.clients:hover::after{transform:translateY(-2px)}
@@ -247,14 +254,14 @@ footer{border-top:1px solid var(--line); margin-top:clamp(56px,8vw,96px)}
 .cta{padding:clamp(40px,6vw,72px) 0 32px; display:flex; flex-direction:column; align-items:center; text-align:center; gap:20px}
 .cta h2{margin:0; font-weight:600; font-size:clamp(30px,4.4vw,52px); letter-spacing:-.03em; line-height:1.05}
 .cta-row{display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:10px 16px}
-.mail-btn{background:var(--accent); color:#fff; text-decoration:none; font-weight:500; padding:11px 26px; border-radius:999px}
+.mail-btn{background:var(--accent); color:var(--on-accent); text-decoration:none; font-weight:500; padding:11px 26px; border-radius:999px}
 .mail-btn:hover{filter:brightness(1.08)}
 .addr{color:var(--muted); font-size:14px}
 .copy-btn{font:inherit; font-size:12px; color:var(--ink); background:var(--surface); border:0; border-radius:999px; padding:5px 12px; cursor:pointer}
 .copy{text-align:center; font-size:11px; color:var(--muted); padding:0 0 24px}
 
 /* ---------- Lightbox ---------- */
-.lb{position:fixed; inset:0; z-index:20; background:rgba(8,8,9,.96); color:#fff; display:none; grid-template-rows:auto minmax(0,1fr)}
+.lb{position:fixed; inset:0; z-index:20; background:rgba(4,3,34,.97); color:#fff; display:none; grid-template-rows:auto minmax(0,1fr)}
 .lb.open{display:grid}
 .lb-head{display:flex; justify-content:space-between; align-items:center; gap:16px; padding:18px var(--gutter)}
 .lb-head h3{margin:0; font-weight:500; font-size:16px}
@@ -263,7 +270,7 @@ footer{border-top:1px solid var(--line); margin-top:clamp(56px,8vw,96px)}
 .lb-stage{display:flex; align-items:center; justify-content:center; padding:0 var(--gutter) 28px; min-height:0}
 .lb-stage{position:relative}
 .lb-nav{position:absolute; top:50%; transform:translateY(-50%); width:44px; height:44px; border-radius:50%; border:1px solid rgba(255,255,255,.3); background:rgba(0,0,0,.5); color:#fff; cursor:pointer; display:grid; place-items:center}
-.lb-nav:hover{background:var(--accent); border-color:var(--accent)}
+.lb-nav:hover{background:var(--blue); border-color:var(--blue)}
 .lb-nav[hidden]{display:none}
 .lb-nav svg{width:16px; height:16px}
 .lb-nav.prev{left:var(--gutter)} .lb-nav.next{right:var(--gutter)}
@@ -290,7 +297,6 @@ button,a{-webkit-tap-highlight-color:transparent}
   .intro{gap:18px}
   .big{width:max-content}
   .big h1{font-size:68px}
-  .spark{right:-18px; width:20px}
   .side-label{font-size:9px}
   .hero-text p{font-size:14px; margin-bottom:6px}
   .reel{border-radius:12px}
@@ -333,7 +339,7 @@ button,a{-webkit-tap-highlight-color:transparent}
   .lb-head{padding:12px 16px; padding-top:max(12px, env(safe-area-inset-top))}
   .lb-head h3{font-size:15px}
   .lb-stage{padding:0 0 max(16px, env(safe-area-inset-bottom))}
-  .lb{background:#000}
+  .lb{background:#040322}
   .lb-stage img{inset:0 0 76px; width:100%; height:calc(100% - 76px)}
   .lb-nav{width:38px; height:38px; top:auto; bottom:max(20px, env(safe-area-inset-bottom)); transform:none}
   .lb-nav.prev{left:16px} .lb-nav.next{right:16px}
@@ -341,6 +347,32 @@ button,a{-webkit-tap-highlight-color:transparent}
 @media (prefers-reduced-motion: reduce){
   *{transition:none !important}
 }
+
+/* ---------- Affischkänsla: glöd + korn ---------- */
+html{background:var(--bg)}
+body{background:transparent}
+body::before{content:""; position:fixed; inset:0; z-index:-2; pointer-events:none; background:
+  radial-gradient(max(62vw,460px) max(48vw,380px) at 94% -8%, rgba(2,151,222,var(--g1)), transparent 72%),
+  radial-gradient(max(34vw,260px) max(30vw,240px) at 104% 36%, rgba(252,115,77,var(--g2)), transparent 72%),
+  radial-gradient(max(48vw,360px) max(42vw,320px) at -10% 84%, rgba(2,151,222,var(--g3)), transparent 72%)}
+body::after{content:""; position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:var(--grain);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.reel{box-shadow:0 0 0 1px rgba(2,151,222,.35), 0 30px 90px -18px rgba(2,151,222,.6), 46px 40px 120px -40px rgba(252,115,77,.6)}
+body{overflow-x:clip}
+.about>.profile{position:relative; overflow:visible; background:none}
+.about>.profile img{border-radius:16px}
+.about>.profile::before{content:""; position:absolute; z-index:-1; inset:-5% -7%; border-radius:999px; filter:blur(48px); opacity:.62;
+  background:linear-gradient(180deg,#0297DE 0%,#040322 55%,#FC734D 100%)}
+.stats .stat{background:var(--glass); border:1px solid var(--line)}
+.filters button{background:var(--glass); box-shadow:inset 0 0 0 1px var(--line)}
+footer{border-top:0}
+.cta{--ink:#fff; --muted:rgba(255,255,255,.82); color:#fff; border-radius:24px; margin-bottom:32px; padding:clamp(56px,9vw,120px) 24px; overflow:hidden; background:
+  radial-gradient(70% 130% at 88% 112%, #FC734D 0%, rgba(252,115,77,0) 58%),
+  radial-gradient(85% 130% at 12% -18%, #0297DE 0%, rgba(2,151,222,0) 62%),
+  #040322}
+.cta .mail-btn{background:#fff; color:#040322}
+.big h1.logo{font-size:0; line-height:0; letter-spacing:0}
+.big h1.logo svg{display:block; height:clamp(100px,12vw,168px); width:auto; aspect-ratio:179/112}
 </style>
 </head>
 <body>
@@ -359,8 +391,7 @@ button,a{-webkit-tap-highlight-color:transparent}
     <div class="intro">
       <div class="big">
         <span class="side-label">PHOTO AND FILM</span>
-        <h1><span>Port</span><span>folio</span></h1>
-        <svg class="spark" viewBox="0 0 48 48" aria-hidden="true"><path fill="currentColor" d="M24 0c1.4 12.6 4.4 17.4 24 24-19.6 6.6-22.6 11.4-24 24-1.4-12.6-4.4-17.4-24-24C19.6 17.4 22.6 12.6 24 0Z"/></svg>
+        <h1 class="logo"><svg viewBox="7.5 14 179 112" role="img" aria-label="Markus Fredriksson"><defs><clipPath id="logo-m"><rect x="7.5" y="14" width="109" height="112"/></clipPath></defs><g clip-path="url(#logo-m)"><path d="M14 126V14L62 88L110 14V126" fill="none" stroke="currentColor" stroke-width="13" stroke-miterlimit="6"/></g><rect x="116.5" y="14" width="70" height="13" fill="var(--accent)"/><rect x="116.5" y="64" width="54" height="13" fill="var(--accent)"/></svg></h1>
       </div>
       <div class="hero-text">
         <p>Here's my portfolio with projects I've done.</p>
